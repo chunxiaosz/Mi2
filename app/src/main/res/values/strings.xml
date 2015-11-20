@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">登顶医疗</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title_splash">Globalpeak</string>
+
+    <string name="sc">DD</string>
+    <string name="title_activity_run">Running</string>
+</resources>

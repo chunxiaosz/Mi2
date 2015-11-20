@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/hilink_bg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设备: Serial Num"
+        android:id="@+id/display"
+        android:textSize="20dp"
+        android:textColor="@color/dd_text_color"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/sl"
+        android:fillViewport="true"
+        android:layout_alignParentBottom="true"
+        android:scrollbars="none" >
+
+        <com.ddkj.chunxiao.mi2.DDGridView
+            android:id="@+id/gridview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="0.0dip"
+            android:listSelector="@null"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="0.0dip" />
+    </ScrollView>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@id/sl"
+        android:background="@drawable/lst_bg">
+        <TableRow>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="压力："/>
+            <EditText android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:id="@+id/et_pre"
+                android:layout_weight="0.5"
+                android:text="100"
+                android:singleLine="true"
+                android:numeric="integer"
+                android:imeOptions="actionGo"
+                />
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="mmHg"/>
+            <ImageButton android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/plus_pressure"
+                android:background="@drawable/plus"
+                />
+            <ImageButton android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/minus"
+                android:id="@+id/minus_pressure"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="温度："/>
+            <EditText android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_temp"
+                android:text="36"
+                android:gravity="center_horizontal"
+                android:layout_weight="0.5"
+                android:singleLine="true"
+                android:numeric="integer"
+                android:imeOptions="actionGo"
+                />
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="℃"/>
+            <ImageButton android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/plus_temp"
+                android:background="@drawable/plus"
+                />
+            <ImageButton android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/minus"
+                android:id="@+id/minus_temp"/>
+        </TableRow>
+    </TableLayout>
+
+    <!--<ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/list_para"
+        android:layout_above="@id/sl"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/lst_bg"/>-->
+
+
+</RelativeLayout>

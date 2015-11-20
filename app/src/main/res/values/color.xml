@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="griditems_bg">#ffe8ecef</color>
+    <color name="commo_text_color">#ffffff</color>
+    <color name="line">#3c3f41</color>
+    <color name="dd_text_color">#64ffff</color>
+    <color name="btn_bg_color">#64ffff</color>
+</resources>
+
+
+

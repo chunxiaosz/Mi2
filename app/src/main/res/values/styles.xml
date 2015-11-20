@@ -1,0 +1,75 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/DDActionBar</item>
+
+        <item name="actionBarStyle">@style/DDActionBar</item>
+    </style>
+
+    <style name="DDActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@mipmap/ab_bg</item>
+        <item name="android:titleTextStyle">@style/DDActionBarTitleText</item>
+
+        <item name="background">@mipmap/ab_bg3</item>
+        <item name="titleTextStyle">@style/DDActionBarTitleText</item>
+    </style>
+
+    <style name="DDActionBarTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+   <!-- <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/DDActionBar</item>
+        <item name="android:actionBarDivider">@null</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="android:actionBarTabBarStyle">@style/MyActionBarTabBars</item>
+        <item name="android:actionMenuTextColor">@android:color/holo_green_light</item>
+
+        &lt;!&ndash; Support library compatibility &ndash;&gt;
+        <item name="actionBarStyle">@style/DDActionBar</item>
+        <item name="actionBarDivider">@null</item>
+        <item name="actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="actionBarTabBarStyle">@style/MyActionBarTabBars</item>
+        <item name="actionMenuTextColor">@android:color/holo_green_light</item>
+    </style>
+
+    &lt;!&ndash; ActionBar styles &ndash;&gt;
+    <style name="DDActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:background">@android:color/holo_orange_light</item>
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+        <item name="android:backgroundStacked">@android:color/holo_green_dark</item>
+
+        &lt;!&ndash; Support library compatibility &ndash;&gt;
+        <item name="background">@android:color/holo_blue_bright</item>
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+        <item name="backgroundStacked">@android:color/holo_green_dark</item>
+    </style>
+
+    &lt;!&ndash; ActionBar title text &ndash;&gt;
+    <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    &lt;!&ndash; ActionBar tabs text &ndash;&gt;
+    <style name="MyActionBarTabText" parent="@style/Widget.AppCompat.ActionBar.TabText">
+        <item name="android:textColor">@android:color/holo_blue_bright</item>
+    </style>
+
+    <style name="MyActionBarTabs" parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="android:background">@android:color/holo_blue_dark</item>
+    </style>
+
+    <style name="MyActionBarTabBars" parent="@style/Widget.AppCompat.ActionBar.TabBar">
+
+        <item name="android:showDividers">none</item>
+    </style>-->
+
+</resources>
