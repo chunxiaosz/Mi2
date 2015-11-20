@@ -25,7 +25,7 @@ public class DDIntentService extends IntentService {
 
     private final String TAG = "DDKJ_Service";
 
-    //private int local_port = 8888;
+    private int local_port = 6666;
     private int remote_port = 9999;
     private String data;
     private String func;
@@ -71,68 +71,41 @@ public class DDIntentService extends IntentService {
 
                 response = false;
 
-                String bcast = intent.getStringExtra("bcast");
-                Log.d(TAG, "bcast is: " + bcast);
-                if(bcast == null){
-                    Log.d(TAG, "bcast info is empty");
-                }
-
-                MulticastSocket ms = null;
-
+                DatagramSocket socket = null;
+                DatagramPacket dp = null;
                 try{
-                    ms = new MulticastSocket();
-                }catch(IOException e){
-                    Log.e(TAG, "open socket:" + e.getMessage());
-                }
+                    socket = new DatagramSocket(local_port);
 
-                String idata = "sense";
+                    byte[] data = new byte[128];
 
-                byte[] buf = idata.getBytes();
+                    dp = new DatagramPacket(data, data.length);
 
-                InetAddress des = null;
+                    socket.setSoTimeout(10000);
+                    socket.receive(dp);
 
-                try{
-                    des = InetAddress.getByName(bcast);
-                }catch(UnknownHostException e){
-                    Log.e(TAG, "parse host err:" + e.getMessage());
-                }
-
-                DatagramPacket dp = new DatagramPacket(buf, buf.length, des, remote_port);
-                if(dp == null){
-                    Log.d(TAG, "DatagramPacket is null");
-                    ms.close();
-                    stopSelf();
-                }
-                try{
-                    ms.send(dp);
-                }catch(IOException e){
-                    Log.e(TAG, e.getMessage());
-                }
-
-
-                byte[] recvBuf = new byte[128];
-                DatagramPacket recvPacket = new DatagramPacket(recvBuf, recvBuf.length);
-
-                try {
-                    ms.setSoTimeout(5000);
-                    ms.receive(recvPacket);
                     response = true;
-                } catch (IOException e) {
-                    Log.e(TAG, "Time out");
-                    Log.e(TAG, e.toString());
+
+                }catch (SocketException e){
+                    Log.e(TAG, "open socket:" + e.getMessage());
+                }catch(IOException e){
+                    Log.e(TAG, "IO error" + e.getMessage());
                 }
+
 
                 Intent i = new Intent("com.ddkj.chunxiao.sense");
                 if(response){
-                    String recvStr = new String(recvPacket.getData(), 0, recvPacket.getLength());
-                    Log.d(TAG, recvStr);
+                    String result = new String(dp.getData(), 0, dp.getLength());
+                    Log.d(TAG, result);
 
-                    String ip = recvPacket.getAddress().getHostAddress();
-                    String port = String.valueOf(recvPacket.getPort());
+                    String ip = dp.getAddress().getHostAddress();
+                    String port = String.valueOf(dp.getPort());
 
                     editor.putString("ip_addr", ip);
                     editor.putString("port", port);
                     editor.commit();
+
+                    Log.d(TAG, "ipaddr: " + ip);
+                    Log.d(TAG, "port: " + port);
 
                     i.putExtra("state", "kiss");
 
@@ -144,7 +117,7 @@ public class DDIntentService extends IntentService {
 
                 sendBroadcast(i);
 
-                ms.close();
+                socket.close();
 
             }else{
 
@@ -204,7 +177,7 @@ public class DDIntentService extends IntentService {
                     }
                 }
 
-                if(loop == false){
+                if(!loop){
                     String recvStr = new String(recvPacket.getData(), 0, recvPacket.getLength());
                     Log.d(TAG, "Receive: " + recvStr);
                 }

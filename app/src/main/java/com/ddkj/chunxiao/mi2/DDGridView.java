@@ -24,5 +24,4 @@ public class DDGridView extends GridView {
         super.onMeasure(widthMeasureSpec, expandSpec);
     }
 
-
 }

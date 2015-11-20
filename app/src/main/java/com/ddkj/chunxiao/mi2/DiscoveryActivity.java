@@ -15,6 +15,7 @@ import android.os.Bundle;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import java.net.InetAddress;
@@ -33,6 +34,8 @@ public class DiscoveryActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+
+    private TextView display;
 
     final IntentFilter intentFilter = new IntentFilter("com.ddkj.chunxiao.sense");
 
@@ -55,6 +58,26 @@ public class DiscoveryActivity extends AppCompatActivity {
         }
     };
 
+    final Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if(!find){
+                if (cnt == 0) {
+                    display.setText("发现 .");
+                } else if (cnt == 1) {
+                    display.setText("发现 ..");
+                } else if (cnt == 2) {
+                    display.setText("发现 ...");
+                }
+                cnt = (++cnt) % 3;
+                handler.postDelayed(this, 1000);
+            }else{
+                display.setText("未发现");
+                display.setClickable(true);
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +91,23 @@ public class DiscoveryActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("ddkj", MODE_PRIVATE);
         editor = preferences.edit();
+
+        display = (TextView)findViewById(R.id.discovery);
+
+        display.setOnClickListener(new TextView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                find = false;
+                cnt = 0;
+                Intent i = new Intent(DiscoveryActivity.this, DDIntentService.class);
+                i.setAction(action);
+
+                startService(i);
+
+                handler.postDelayed(runnable, 1000);
+            }
+        });
+
     }
 
     @Override
@@ -107,31 +147,12 @@ public class DiscoveryActivity extends AppCompatActivity {
         super.onStart();
         Log.d(TAG, "Discovery Activity onStart");
 
-        final TextView display = (TextView)findViewById(R.id.discovery);
-
-        final Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                if(!find){
-                    if (cnt == 0) {
-                        display.setText("发现 .");
-                    } else if (cnt == 1) {
-                        display.setText("发现 ..");
-                    } else if (cnt == 2) {
-                        display.setText("发现 ...");
-                    }
-                    cnt = (++cnt) % 3;
-                    handler.postDelayed(this, 1000);
-                }else{
-                    display.setText("未发现");
-                }
-            }
-        };
+        display.setClickable(false);
 
 
         Intent i = new Intent(this, DDIntentService.class);
         i.setAction(action);
-        i.putExtra("bcast", getBroadcastIPAddress());
+        //i.putExtra("bcast", getBroadcastIPAddress());
 
         startService(i);
 
